@@ -1,0 +1,40 @@
+@import '../colors';
+
+// TOASTIFY ANIMATION
+@keyframes slideOut {
+    from {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+    50% {
+      opacity: .5;
+    }
+    to {
+      opacity: 0;
+      transform: translateX(500px);
+    }
+}
+
+@keyframes slideIn {
+    from {
+      transform: translateX(500px);
+    }
+  
+    to {
+      transform: translateX(0px);
+    }
+};
+
+.slideIn{ // enter notification
+    animation: slideIn 1s;
+}
+.slideOut { // exit notification
+    animation: slideOut 1s;
+}
+
+.toastify-success{
+    background-color: $success;
+    padding: 4px;
+    width:100%;
+    color:#FFFFFF;
+}
