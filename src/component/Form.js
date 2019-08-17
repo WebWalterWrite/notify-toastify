@@ -1,92 +1,135 @@
-import React, { useState } from 'react';
-import { ToastContainer } from 'react-toastify';
-import { toastSuccess, toastError } from '../styles/toastify/toast';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import icons from '../styles/icons/icons.fontawesome';
+import React, { useState } from "react";
+import { useInput, isDisplayToast } from "../utils/functions/utils.functions";
+import { ToastContainer } from "react-toastify";
+import Loader from "./Loader";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import icons from "../assets/icons/icons.fontawesome";
+import "../assets/css/Form.scss";
 
-
-/**
- * @description - Créer un input selon les valeurs passées en params
- * @param {string} initialState
- * @param {string} type 
- * @param {string} placeholder 
- * @param {string} name 
- */
-const useInput = (initialState, type, placeholder, name) => {
-
-    const [value, setValue] = useState(initialState);
-
-    return {
-        onChange: e => setValue(e.target.value),
-        type,
-        placeholder,
-        name,
-        value
-    }
-};
-
-/**
- * @description - retourne le type de notification à afficher
- * @param {boolean} status 
- */
-const isDisplayToast = status => status ? toastSuccess() : toastError()
-
+let countSubmit = 0;
 
 /**
  * @description - Composant formulaire
  */
 const Form = () => {
 
-    const { user, envelope, secret } = icons;
+	const { user, envelope, secret } = icons; // Fontawesome icons
 
-    const sendForm = e => {
-        e.preventDefault();
+	const [button, setButton] = useState({
+		content: "valider",
+		status: false,
+		disabled: false
+	});
 
-        const form = new FormData(e.target);
+	// init input
+	const name = useInput("", "text", "ex: jhon snow", "firstname");
+	const email = useInput("", "email", "ex: jsnow@winterfell.got", "mail");
+	const password = useInput(
+		"",
+		"password",
+		"ex: Kingofthenight66!+",
+		"password"
+	);
 
-        const data = {
-            firstname: form.get('firstname'),
-            email: form.get('email'),
-            password: form.get('password')
-        };
+	/**
+	 * @description - Récupére les données du formulaire
+	 */
+	const getData = e => {
+		e.preventDefault();
 
-        data && isDisplayToast(true)
+		const form = new FormData(e.target);
 
-    }
+		const data = {
+			// retrieve user data form
+			firstname: form.get("firstname"),
+			email: form.get("mail"),
+			password: form.get("password")
+		};
+		checkData(data);
+	};
 
-    // init input
-    const name = useInput("", "text", "prénom", "firstname");
-    const email = useInput("", "email", "email", "mail");
-    const password = useInput("", "password", "mot de passe", "password");
+	/**
+	 * @description - Vérifie les données du formulaire
+	 */
+	const checkData = ({firstname, email, password}) => {
+		countSubmit++;
+	
+		if (firstname && email && password) return sendForm(firstname, email);
+		if (countSubmit < 5) return isDisplayToast(false, countSubmit);
+		if (countSubmit > 4) return setButton({ ...button, disabled: !button.disabled });
+	};
 
-    return (
+	/**
+	 * @description - Envoi les données du formulaire
+	 */
+	const sendForm = (firstname, email) => {
+		return (
+			setButton({
+				...button,
+				status: true
+			}),
+			setTimeout(() => {
+				// simulates server response time
+		
+				isDisplayToast(true, firstname, email); // Display success notification
+				setButton({
+					content: "envoyé",
+					status: false
+				}); // update button state
+			}, 4000)
+		);
+	};
 
-        <form onSubmit={sendForm}>
-            {/* champ prénom */}
-            <div className="input-container">
-                <FontAwesomeIcon icon={user} size="2x" />
-                <input {...name} />
-            </div>
+	return (
+		<form onSubmit={getData}>
+			<ToastContainer />
+			{/* champ prénom */}
+			<div className="input-label">
+				<label htmlFor="Email">Firstname</label>
+			</div>
+			<div className="input-container">
+				<FontAwesomeIcon icon={user} size="lg" />
+				<input {...name} />
+			</div>
 
-            {/* champ email */}
-            <div className="input-container">
-                <FontAwesomeIcon icon={envelope} size="2x" />
-                <input {...email} />
-            </div>
+			{/* champ email */}
+			<div className="input-label">
+				<label htmlFor="Email">Email</label>
+			</div>
+			<div className="input-container">
+				<FontAwesomeIcon icon={envelope} size="lg" />
+				<input {...email} />
+			</div>
 
-            {/* champ password */}
-            <div className="input-container">
-                <FontAwesomeIcon icon={secret} size="2x" />
-                <input {...password} />
-            </div>
-
-            <div>
-                <button>
-                    <span role="img" aria-label="rocket">🚀 go 🚀</span></button>
-            </div>
-            < ToastContainer />
-        </form>
-    )
+			<div className="input-label">
+				<label htmlFor="password">Password</label>
+			</div>
+			{/* champ password */}
+			<div className="input-container">
+				<FontAwesomeIcon icon={secret} size="lg" />
+				<input {...password} />
+			</div>
+			<div>
+				{!button.status ? (
+					<button
+						className={`submit-button ${
+							button.disabled ? "submit-button-disabled" : ""
+						}`}
+						disabled={button.disabled}
+					>
+						<span role="img" aria-label="rocket">
+							{button.content}
+						</span>
+					</button>
+				) : (
+					<Loader />
+				)}
+			</div>
+			<span>
+				Les erreurs de saisie ne sont pas contrôlés afin de simplifier la démo
+			</span>
+		</form>
+	);
 };
 
 export default Form;
