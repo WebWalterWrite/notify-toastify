@@ -1,0 +1,90 @@
+@import "../css/colors";
+@import "../../utils/styles/responsive";
+
+// TOASTIFY ANIMATION
+@include phones {
+	@keyframes slideOut {
+		from {
+			opacity: 1;
+			transform: translateX(0px);
+		}
+		to {
+			opacity: 0.5;
+			transform: translateX(-500px);
+		}
+	}
+}
+
+@include largeDesktop {
+	@keyframes slideOut {
+		from {
+			opacity: 1;
+			transform: translateX(0px);
+		}
+		to {
+			opacity: 0.5;
+			transform: translateX(700px);
+		}
+	}
+}
+
+@keyframes slideIn {
+	from {
+		transform: translateX(500px);
+	}
+
+	to {
+		transform: translateX(0px);
+	}
+}
+
+.slideIn {
+	// enter notification
+	animation: slideIn 1s;
+}
+.slideOut {
+	// exit notification
+	animation: slideOut 1s;
+}
+
+.toastify-success {
+	background-color: $success;
+	width: 100%;
+	color: #ffffff;
+	border-radius: 0 0 4px 4px;
+	p {
+		text-align: left;
+		margin-top: 10px;
+		span,
+		a {
+			font-weight: 600;
+		}
+		a {
+			color: $white;
+		}
+	}
+	@include phones {
+		font-size: 16px;
+	}
+	@include largeDesktop {
+		font-size: 18px;
+	}
+}
+.Toastify__toast-container--top-right,
+.Toastify__toast-container--bottom-right {
+	@include largeDesktop {
+		margin-left: -(1000 / 2) + px;
+		width: 30%;
+		border-radius: 4px;
+	}
+}
+
+.Toastify__toast--error {
+	@include largeDesktop {
+		border-radius: 4px;
+		padding: 4px;
+	}
+	@include phones {
+		border-radius: 0;
+	}
+}
