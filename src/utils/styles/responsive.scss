@@ -1,0 +1,23 @@
+@import './devices';
+
+// smartphones devices
+@mixin phones {
+   @media only screen and (max-width: #{$phone-max}) {
+       @content;
+   }
+}
+ 
+// Medium desktop
+@mixin desktop {
+   @media only screen and (min-width: #{$phone-max} ) and (max-width: #{$desktop-s-max}) {
+       @content;
+   }
+}
+ 
+// Large desktop
+@mixin largeDesktop {
+   @media only screen and (min-width: #{$desktop-s-max} ) and  (max-width: #{$desktop-xl-max}) {
+       @content;
+   }
+}
+ 
