@@ -1,0 +1,40 @@
+@import "./colors";
+@import "../../utils/styles/responsive";
+.loader {
+	margin: 20px;
+	color: $yellow;
+	height: 38px;
+}
+.loading {
+	@include phones {
+		width: 70%;
+	}
+	@include largeDesktop {
+		width: 35%;
+	}
+	border: 8px dashed $yellow;
+	border-radius: 4px;
+	-webkit-animation: spin 2s linear infinite;
+	animation: spin 1800ms alternate infinite;
+}
+.container {
+	@include phones {
+		width: 70%;
+	}
+	@include largeDesktop {
+		width: 35%;
+	}
+	border: solid 1px $yellow;
+	border-radius: 13px;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+@keyframes spin {
+	0% {
+		transform: translateX(-80px);
+	}
+	100% {
+		transform: translateX(160px);
+	}
+}

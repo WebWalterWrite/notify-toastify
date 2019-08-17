@@ -1,0 +1,78 @@
+@import "./colors";
+@import "../../utils//styles/responsive";
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	background: #1f232a;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+	@include phones {
+		font-size: 28px;
+	}
+}
+img {
+	@include phones {
+		width: 50px;
+	}
+}
+main {
+	text-align: center;
+	> p {
+		color: #c5a5c5;
+		padding: 0 8px 0 8px;
+		@include largeDesktop {
+			font-size: 26px;
+		}
+		@include phones {
+			font-size: 20px;
+			padding: 10px;
+		}
+		a {
+			color: #ffffff;
+		}
+		&:nth-child(4n) {
+			margin-top: 20px;
+		}
+	}
+
+	.github-link {
+		margin-top: 30px;
+		padding:10px;
+		color: $white;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		a {
+			color: #c5a5c5;
+		}
+		@include largeDesktop {
+			font-size: 26px;
+		}
+		@include phones {
+			font-size: 20px;
+		}
+		svg {
+			margin-left: 6px;
+		}
+	}
+}
+section {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 60vh;
+}
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
+}

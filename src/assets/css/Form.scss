@@ -1,0 +1,102 @@
+@import "./colors";
+@import "../../utils/styles/responsive";
+
+//FORMULAIRE
+form {
+	@include phones {
+		width: 90%;
+	}
+	@include largeDesktop {
+		width: 40%;
+	}
+	border: $yellow solid 2px;
+	border-radius: 5px;
+	padding: 8px;
+	text-align: center;
+	background: $dark;
+}
+
+//INPUT
+.input-container {
+	// bloc icon + input
+	@include phones {
+		width: 70%;
+	}
+	@include largeDesktop {
+		width: 35%;
+	}
+	margin: 0 auto;
+	padding: 10px 20px 5px 0px;
+	display: flex;
+	align-items: center;
+	border-bottom: $yellow 1px solid;
+	input {
+		width: 90%;
+		background: transparent;
+		border: none;
+		outline: none;
+		color: #ffffff;
+		@include phones {
+			font-size: 18px;
+		}
+		@include largeDesktop {
+			font-size: 24px;
+		}
+		&::placeholder {
+			font-size: 16px;
+		}
+	}
+	svg {
+		// fontawesome icon
+		color: $yellow;
+		margin-right: 10px;
+	}
+}
+
+// labe
+.input-label {
+	@include phones {
+		width: 70%;
+	}
+	@include largeDesktop {
+		width: 35%;
+	}
+	margin: 0 auto;
+	text-align: left !important;
+	margin-top: 30px;
+	& label {
+		font-size: 24px;
+		display: inline-block;
+		color: $yellow;
+	}
+}
+
+.submit-button {
+	@include phones {
+		width: 70%;
+	}
+	@include largeDesktop {
+		width: 35%;
+	}
+	padding: 6px;
+	margin: 20px;
+	border-radius: 8px;
+	font-size: 22px;
+	background: $yellow;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	&:active {
+		transform: translateY(2px);
+		font-weight: 500;
+		transition: all 70ms ease-in-out;
+	}
+}
+.submit-button-disabled {
+	background: lighten($enabled, 50%);
+	transition: all 200ms ease-in-out;
+	text-decoration: line-through;
+	&:active {
+		transform: none !important;
+	}
+}

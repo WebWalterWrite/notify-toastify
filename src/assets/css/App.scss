@@ -1,0 +1,33 @@
+@import './colors';
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 25vmin;
+  width: 25vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  min-height: 20vh;
+  display: flex;
+  align-items: center;
+  color:$yellow;
+  & div{
+    font-size:32px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.toast-success {
+  background-color: #51A351 !important;
+}
