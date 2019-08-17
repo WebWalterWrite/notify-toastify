@@ -1,11 +1,12 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Petite démo d'utilisation de la bibiothéque 🚀[react-toastify](https://github.com/fkhadra/react-toastify "React-Toastify").
 
-## Available Scripts
+## Commencer ...
 
-In the project directory, you can run:
+### `npm install`
+
+Installer les dépédences
 
 ### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Ouvrez [http://localhost:3000](http://localhost:3000).
 
