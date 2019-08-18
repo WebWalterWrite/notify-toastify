@@ -21,6 +21,8 @@ Pour notifier l'utilisateur d'un nouvel article paru, que des produits sont touj
 
 ## Démo
 
+Simple exemple avec un formulaire d'inscription<sup style="font-style=italic"> * afin de simplifier l'exemple, les champs du formulaire ne sont pas soumis à vérifications de type <sup/>
+  
 voir la [demo](https://infallible-dijkstra-7b67a2.netlify.com/)
 
 ##  Démarrer
